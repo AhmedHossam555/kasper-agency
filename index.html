@@ -1,316 +1,808 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Kasper - creative agency delivering modern design, responsive web solutions, and exceptional digital experiences. We make art and technology work together." />
-  <meta name="theme-color" content="#19c8fa" />
-  <meta name="author" content="Kasper Agency" />
-  <meta name="robots" content="index, follow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="image/logo.png" />
-  <title>Kasper | Creative Digital Agency</title>
-  <!-- Google Fonts with display swap -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
-  </noscript>
-  <link rel="stylesheet" href="styles/style.css" />
-</head>
-<body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <head>
+    <!-- ============================================
+         META INFORMATION & SEO
+         ============================================ -->
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Kasper - creative agency delivering modern design, responsive web solutions, and exceptional digital experiences. We make art and technology work together."
+    />
+    <meta name="theme-color" content="#19c8fa" />
+    <meta name="author" content="Kasper Agency" />
+    <meta name="robots" content="index, follow" />
 
-  <header>
-    <div class="container">
-      <a href="#" class="logo" aria-label="Kasper home">
-        <img src="images/kaspar-logo.png" alt="Kasper logo" width="70" height="70" />
-      </a>
-      <nav aria-label="Main navigation">
-        <button class="toggle-menu" aria-label="Menu" aria-expanded="false">
-          <svg class="icon-svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-            <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+    <!-- ============================================
+         RESOURCE PRECONNECTION & PRELOAD
+         ============================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="image/logo.png" />
+
+    <!-- ============================================
+         PAGE TITLE
+         ============================================ -->
+    <title>Kasper | Creative Digital Agency</title>
+
+    <!-- ============================================
+         GOOGLE FONTS WITH OPTIMIZED LOADING
+         Fonts: Open Sans (300, 400, 600, 700, 800 weights)
+         ============================================ -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- ============================================
+         STYLESHEETS
+         ============================================ -->
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+
+  <body>
+    <!-- ============================================
+         ACCESSIBILITY: SKIP TO MAIN CONTENT LINK
+         ============================================ -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============================================
+         HEADER & NAVIGATION
+         ============================================ -->
+    <header>
+      <div class="container">
+        <!-- LOGO -->
+        <a href="#" class="logo" aria-label="Kasper home">
+          <img
+            src="images/kaspar-logo.png"
+            alt="Kasper logo"
+            width="70"
+            height="70"
+          />
+        </a>
+
+        <!-- NAVIGATION MENU -->
+        <nav aria-label="Main navigation">
+          <!-- MOBILE MENU TOGGLE BUTTON -->
+          <button class="toggle-menu" aria-label="Menu" aria-expanded="false">
+            <svg
+              class="icon-svg"
+              viewBox="0 0 24 24"
+              width="28"
+              height="28"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <!-- Hamburger menu icon -->
+              <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+            </svg>
+          </button>
+
+          <!-- NAVIGATION LINKS -->
+          <ul id="main-nav-list">
+            <!-- CLOSE BUTTON FOR MOBILE -->
+            <li>
+              <button class="close-nav-btn" aria-label="Close menu">✕</button>
+            </li>
+            <!-- NAVIGATION ITEMS -->
+            <li><a href="#Home" class="active">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#price">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+
+          <!-- SEARCH FORM -->
+          <div class="form">
+            <svg
+              class="icon-svg"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <!-- Search icon -->
+              <path
+                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+              />
+            </svg>
+            <span class="visually-hidden">Search</span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ============================================
+         MAIN CONTENT
+         ============================================ -->
+    <main id="main-content">
+
+      <!-- ============================================
+           LANDING/HERO SECTION
+           Features: Carousel with navigation buttons & bullet indicators
+           ============================================ -->
+      <div class="landing">
+        <!-- BACKGROUND OVERLAY -->
+        <div class="overlay"></div>
+
+        <!-- HERO TEXT CONTENT -->
+        <div class="text">
+          <div class="content">
+            <h2>Hello World!<br />We Are Kasper We Make Art.</h2>
+            <p>
+              Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+              Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+              Curabitur aliquet quam. Accumsan id imperdiet et, porttitor at
+              sem.
+            </p>
+          </div>
+        </div>
+
+        <!-- CAROUSEL NAVIGATION BUTTONS -->
+        <!-- PREVIOUS SLIDE BUTTON -->
+        <button
+          class="change-background fa-angle-left"
+          aria-label="Previous slide"
+        >
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
           </svg>
         </button>
-        <ul id="main-nav-list">
-          <li><button class="close-nav-btn visually-hidden" aria-label="Close menu">✕</button></li>
-          <li><a href="#Home" class="active">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#About">About</a></li>
-          <li><a href="#price">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="form">
-          <svg class="icon-svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+
+        <!-- NEXT SLIDE BUTTON -->
+        <button
+          class="change-background fa-angle-right"
+          aria-label="Next slide"
+        >
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
           </svg>
-          <span class="visually-hidden">Search</span>
-        </div>
-      </nav>
-    </div>
-  </header>
+        </button>
 
-  <main id="main-content">
-    <div class="landing">
-      <div class="overlay"></div>
-      <div class="text">
-        <div class="content">
-          <h2>Hello World!<br />We Are Kasper We Make Art.</h2>
-          <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur aliquet quam. Accumsan id imperdiet et, porttitor at sem.</p>
-        </div>
-      </div>
-      <button class="change-background fa-angle-left" aria-label="Previous slide">
-        <svg class="icon-svg" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-        </svg>
-      </button>
-      <button class="change-background fa-angle-right" aria-label="Next slide">
-        <svg class="icon-svg" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-        </svg>
-      </button>
-      <ul class="bullets" role="tablist">
-        <li role="tab" aria-label="Slide 1"></li>
-        <li class="active" role="tab" aria-label="Slide 2"></li>
-        <li role="tab" aria-label="Slide 3"></li>
-      </ul>
-    </div>
-
-    <section id="services" class="services">
-      <div class="container">
-        <div class="main-heading">
-          <h2>Services</h2>
-          <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
-        </div>
-        <div class="content-services">
-          <div class="srv-box">
-            <svg class="icon-svg" viewBox="0 0 24 24" width="50px" height="50px" fill="currentColor" aria-hidden="true">
-              <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z" />
-            </svg>
-            <div class="text">
-              <h3>Vorem amet intuitive</h3>
-              <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
-            </div>
-          </div>
-          <div class="srv-box">
-            <svg class="icon-svg" viewBox="0 0 24 24" width="50px" height="50px" fill="currentColor" aria-hidden="true">
-              <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.33-.02-.64-.06-.94l2.02-1.58c.18-.14.23-.38.12-.56l-1.89-3.28c-.12-.19-.36-.26-.56-.18l-2.38.96c-.5-.38-1.06-.68-1.66-.88L14.45 3.5c-.04-.2-.2-.34-.4-.34h-3.78c-.2 0-.36.14-.4.34l-.3 2.52c-.6.2-1.16.5-1.66.88l-2.38-.96c-.2-.08-.44-.01-.56.18l-1.89 3.28c-.12.19-.07.42.12.56l2.02 1.58c-.04.3-.06.61-.06.94 0 .33.02.64.06.94l-2.02 1.58c-.18.14-.23.38-.12.56l1.89 3.28c.12.19.36.26.56.18l2.38-.96c.5.38 1.06.68 1.66.88l.3 2.52c.04.2.2.34.4.34h3.78c.2 0 .36-.14.4-.34l.3-2.52c.6-.2 1.16-.5 1.66-.88l2.38.96c.2.08.44.01.56-.18l1.89-3.28c.12-.19.07-.42-.12-.56l-2.02-1.58zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
-            </svg>
-            <div class="text">
-              <h3>Vorem amet intuitive</h3>
-              <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
-            </div>
-          </div>
-          <div class="srv-box">
-            <svg class="icon-svg" viewBox="0 0 24 24" width="50px" height="50px" fill="currentColor" aria-hidden="true">
-              <path d="M16.84 2.75c.39-.39 1.02-.39 1.41 0l2.5 2.5c.39.39.39 1.02 0 1.41L8.94 18.47c-.36.36-.85.58-1.38.58H4.5c-.28 0-.5-.22-.5-.5v-3.06c0-.53.21-1.03.59-1.4L16.84 2.75zM18 4.5L19.5 6 18 7.5 16.5 6 18 4.5zM5 16.5L7 18.5 5.5 20H4v-1.5L5 16.5z" />
-            </svg>
-            <div class="text">
-              <h3>Vorem amet intuitive</h3>
-              <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
-            </div>
-          </div>
-          <div class="srv-box">
-            <svg class="icon-svg" viewBox="0 0 24 24" width="50px" height="50px" fill="currentColor" aria-hidden="true">
-              <path d="M15 12c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm8-6h-4.59l-1.3-2.28C16.7 3.27 16.09 3 15.45 3H8.55c-.64 0-1.25.27-1.64.72L5.59 6H1c-.55 0-1 .45-1 1v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V7c0-.55-.45-1-1-1zm-11 9c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
-            </svg>
-            <div class="text">
-              <h3>Vorem amet intuitive</h3>
-              <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="design">
-      <div class="image-design">
-        <img src="images/iphone_8_8_plus.webp" alt="iPhone mockup" loading="lazy" />
-      </div>
-      <div class="text">
-        <h2>Our Design Comes With...</h2>
-        <ul>
-          <li>
-            <svg class="icon-svg check-icon" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
-            Responsive Design
-          </li>
-          <li>
-            <svg class="icon-svg check-icon" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
-            Modern And Clean Design
-          </li>
-          <li>
-            <svg class="icon-svg check-icon" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
-            Clean Code
-          </li>
-          <li>
-            <svg class="icon-svg check-icon" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
-            Browser Friendly
-          </li>
+        <!-- CAROUSEL INDICATOR BULLETS -->
+        <ul class="bullets" role="tablist">
+          <li role="tab" aria-label="Slide 1"></li>
+          <li class="active" role="tab" aria-label="Slide 2"></li>
+          <li role="tab" aria-label="Slide 3"></li>
         </ul>
       </div>
-    </div>
 
-    <section id="portfolio" class="portfolio">
-      <div class="container">
-        <div class="main-heading">
-          <h2>Portfolio</h2>
-          <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
+      <!-- ============================================
+           SERVICES SECTION
+           Displays 4 service offerings with icons
+           ============================================ -->
+      <section id="services" class="services">
+        <div class="container">
+          <!-- SECTION HEADING -->
+          <div class="main-heading">
+            <h2>Services</h2>
+            <p>
+              Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+            </p>
+          </div>
+
+          <!-- SERVICE BOXES -->
+          <div class="content-services">
+            <!-- SERVICE 1: Display/Video -->
+            <div class="srv-box">
+              <svg
+                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                fill="currentColor"
+              >
+                <path
+                  d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"
+                />
+              </svg>
+              <div class="text">
+                <h3>Vorem amet intuitive</h3>
+                <p>
+                  Curabitur arcu erat, accumsan id imperdiet et, porttitor at
+                  sem.
+                </p>
+              </div>
+            </div>
+
+            <!-- SERVICE 2: Settings/Configuration -->
+            <div class="srv-box">
+              <svg
+                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                fill="currentColor"
+              >
+                <path
+                  d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.33-.02-.64-.06-.94l2.02-1.58c.18-.14.23-.38.12-.56l-1.89-3.28c-.12-.19-.36-.26-.56-.18l-2.38.96c-.5-.38-1.06-.68-1.66-.88L14.45 3.5c-.04-.2-.2-.34-.4-.34h-3.78c-.2 0-.36.14-.4.34l-.3 2.52c-.6.2-1.16.5-1.66.88l-2.38-.96c-.2-.08-.44-.01-.56.18l-1.89 3.28c-.12.19-.07.42.12.56l2.02 1.58c-.04.3-.06.61-.06.94 0 .33.02.64.06.94l-2.02 1.58c-.18.14-.23.38-.12.56l1.89 3.28c.12.19.36.26.56.18l2.38-.96c.5.38 1.06.68 1.66.88l.3 2.52c.04.2.2.34.4.34h3.78c.2 0 .36-.14.4-.34l.3-2.52c.6-.2 1.16-.5 1.66-.88l2.38.96c.2.08.44.01.56-.18l1.89-3.28c.12-.19.07-.42-.12-.56l-2.02-1.58zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"
+                />
+              </svg>
+              <div class="text">
+                <h3>Vorem amet intuitive</h3>
+                <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
+              </div>
+            </div>
+
+            <!-- SERVICE 3: Design/Edit -->
+            <div class="srv-box">
+              <svg
+                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                fill="currentColor"
+              >
+                <path
+                  d="M16.84 2.75c.39-.39 1.02-.39 1.41 0l2.5 2.5c.39.39.39 1.02 0 1.41L8.94 18.47c-.36.36-.85.58-1.38.58H4.5c-.28 0-.5-.22-.5-.5v-3.06c0-.53.21-1.03.59-1.4L16.84 2.75zM18 4.5L19.5 6 18 7.5 16.5 6 18 4.5zM5 16.5L7 18.5 5.5 20H4v-1.5L5 16.5z"
+                />
+              </svg>
+              <div class="text">
+                <h3>Vorem amet intuitive</h3>
+                <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
+              </div>
+            </div>
+
+            <!-- SERVICE 4: Photography -->
+            <div class="srv-box">
+              <svg
+                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                fill="currentColor"
+              >
+                <path
+                  d="M15 12c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm8-6h-4.59l-1.3-2.28C16.7 3.27 16.09 3 15.45 3H8.55c-.64 0-1.25.27-1.64.72L5.59 6H1c-.55 0-1 .45-1 1v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V7c0-.55-.45-1-1-1z"
+                />
+              </svg>
+              <div class="text">
+                <h3>Vorem amet intuitive</h3>
+                <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <ul class="shuffle">
-          <li class="active">All</li>
-          <li>App</li>
-          <li>Photo</li>
-          <li>Web</li>
-          <li>Print</li>
-        </ul>
-      </div>
-      <div class="content-portfolio">
-        <div class="box"><img src="images/portfolio/colored-photo.jpg" alt="Creative artwork" loading="lazy" /><div class="caption"><h4>Awesome Image</h4><p>Photography</p></div></div>
-        <div class="box"><img src="images/portfolio/fashion-illustrator.jpg" alt="Abstract design" loading="lazy" /><div class="caption"><h4>Awesome Image</h4><p>Photography</p></div></div>
-        <div class="box"><img src="images/portfolio/chair.jpg" alt="Modern layout" loading="lazy" /><div class="caption"><h4>Awesome Image</h4><p>Photography</p></div></div>
-        <div class="box"><img src="images/portfolio/portfolio.jpg" alt="Branding shot" loading="lazy" /><div class="caption"><h4>Awesome Image</h4><p>Photography</p></div></div>
-        <div class="box"><img src="images/portfolio/group-photo.jpg" alt="Editorial photography" loading="lazy" /><div class="caption"><h4>Awesome Image</h4><p>Photography</p></div></div>
-        <div class="box"><img src="images/portfolio/fashion.jpg" alt="Fashion concept" loading="lazy" /><div class="caption"><h4>Awesome Image</h4><p>Photography</p></div></div>
-        <div class="box"><img src="images/portfolio/oip.jpg" alt="Digital art" loading="lazy" /><div class="caption"><h4>Awesome Image</h4><p>Photography</p></div></div>
-        <div class="box"><img src="images/portfolio/teodora.webp" alt="Creative portfolio" loading="lazy" /><div class="caption"><h4>Awesome Image</h4><p>Photography</p></div></div>
-        <a href="#" class="more">More</a>
-      </div>
-    </section>
+      </section>
 
-    <div class="video">
-      <video autoplay muted loop playsinline>
-        <source src="images/amazing-under-water-life.mp4" type="video/mp4" />
-        Your browser does not support the video.
-      </video>
-      <div class="text"><h2>Super Awesome Video Here</h2><p>Its All You Need</p><button>See More</button></div>
-    </div>
+      <!-- ============================================
+           DESIGN FEATURES SECTION
+           Displays design benefits with iPhone mockup
+           ============================================ -->
+      <div class="design">
+        <!-- MOCKUP IMAGE -->
+        <div class="image-design">
+          <img
+            src="images/iphone_8_8_plus.webp"
+            alt="iPhone mockup"
+            loading="lazy"
+          />
+        </div>
 
-    <section id="About" class="about">
+        <!-- DESIGN FEATURES LIST -->
+        <div class="text">
+          <h2>Our Design Comes With...</h2>
+          <ul>
+            <li>Responsive Design</li>
+            <li>Modern And Clean Design</li>
+            <li>Clean Code</li>
+            <li>Browser Friendly</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ============================================
+           PORTFOLIO SECTION
+           Displays grid of portfolio items with filtering options
+           ============================================ -->
+      <section id="portfolio" class="portfolio">
+        <div class="container">
+          <!-- SECTION HEADING -->
+          <div class="main-heading">
+            <h2>Portfolio</h2>
+            <p>
+              Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+            </p>
+          </div>
+
+          <!-- PORTFOLIO FILTER BUTTONS -->
+          <ul class="shuffle">
+            <li class="active">All</li>
+            <li>App</li>
+            <li>Photo</li>
+            <li>Web</li>
+            <li>Print</li>
+          </ul>
+        </div>
+
+        <!-- PORTFOLIO ITEMS GRID -->
+        <div class="content-portfolio">
+          <!-- PORTFOLIO ITEM 1 -->
+          <div class="box">
+            <img
+              src="images/portfolio/colored-photo.jpg"
+              alt="Creative artwork"
+              loading="lazy"
+            />
+            <div class="caption">
+              <h4>Awesome Image</h4>
+              <p>Photography</p>
+            </div>
+          </div>
+
+          <!-- PORTFOLIO ITEM 2 -->
+          <div class="box">
+            <img
+              src="images/portfolio/fashion-illustrator.jpg"
+              alt="Abstract design"
+              loading="lazy"
+            />
+            <div class="caption">
+              <h4>Awesome Image</h4>
+              <p>Photography</p>
+            </div>
+          </div>
+
+          <!-- PORTFOLIO ITEM 3 -->
+          <div class="box">
+            <img
+              src="images/portfolio/chair.jpg"
+              alt="Modern layout"
+              loading="lazy"
+            />
+            <div class="caption">
+              <h4>Awesome Image</h4>
+              <p>Photography</p>
+            </div>
+          </div>
+
+          <!-- PORTFOLIO ITEM 4 -->
+          <div class="box">
+            <img
+              src="images/portfolio/portfolio.jpg"
+              alt="Branding shot"
+              loading="lazy"
+            />
+            <div class="caption">
+              <h4>Awesome Image</h4>
+              <p>Photography</p>
+            </div>
+          </div>
+
+          <!-- PORTFOLIO ITEM 5 -->
+          <div class="box">
+            <img
+              src="images/portfolio/group-photo.jpg"
+              alt="Editorial photography"
+              loading="lazy"
+            />
+            <div class="caption">
+              <h4>Awesome Image</h4>
+              <p>Photography</p>
+            </div>
+          </div>
+
+          <!-- PORTFOLIO ITEM 6 -->
+          <div class="box">
+            <img
+              src="images/portfolio/fashion.jpg"
+              alt="Fashion concept"
+              loading="lazy"
+            />
+            <div class="caption">
+              <h4>Awesome Image</h4>
+              <p>Photography</p>
+            </div>
+          </div>
+
+          <!-- PORTFOLIO ITEM 7 -->
+          <div class="box">
+            <img
+              src="images/portfolio/oip.jpg"
+              alt="Digital art"
+              loading="lazy"
+            />
+            <div class="caption">
+              <h4>Awesome Image</h4>
+              <p>Photography</p>
+            </div>
+          </div>
+
+          <!-- PORTFOLIO ITEM 8 -->
+          <div class="box">
+            <img
+              src="images/portfolio/teodora.webp"
+              alt="Creative portfolio"
+              loading="lazy"
+            />
+            <div class="caption">
+              <h4>Awesome Image</h4>
+              <p>Photography</p>
+            </div>
+          </div>
+
+          <!-- VIEW MORE LINK -->
+          <a href="#" class="more">More</a>
+        </div>
+      </section>
+
+      <!-- ============================================
+           VIDEO SECTION
+           Features background video with overlay text & CTA button
+           ============================================ -->
+      <div class="video">
+        <!-- BACKGROUND VIDEO -->
+        <video autoplay muted loop playsinline>
+          <source src="images/amazing-under-water-life.mp4" type="video/mp4" />
+        </video>
+
+        <!-- VIDEO OVERLAY TEXT -->
+        <div class="text">
+          <h2>Super Awesome Video Here</h2>
+          <p>Its All You Need</p>
+          <button>See More</button>
+        </div>
+      </div>
+
+      <!-- ============================================
+           ABOUT SECTION
+           Displays company information with devices illustration
+           ============================================ -->
+      <section id="About" class="about">
+        <div class="container">
+          <!-- SECTION HEADING -->
+          <div class="main-heading">
+            <h2>About</h2>
+            <p>
+              Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+            </p>
+          </div>
+
+          <!-- ILLUSTRATION -->
+          <img
+            src="images/devices-illustration.png"
+            alt="Devices illustration"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <!-- ============================================
+           STATISTICS SECTION
+           Displays animated counter statistics
+           ============================================ -->
+      <div class="stat">
+        <div class="container">
+          <!-- STAT 1: Coffee Drinks -->
+          <div class="box">
+            <div class="number" data-goal="1002">0</div>
+            <p>Coffee Drinks</p>
+          </div>
+
+          <!-- STAT 2: Completed Projects -->
+          <div class="box">
+            <div class="number" data-goal="256">0</div>
+            <p>Completed Projects</p>
+          </div>
+
+          <!-- STAT 3: Emails Sent -->
+          <div class="box">
+            <div class="number" data-goal="743">0</div>
+            <p>Mail Sent</p>
+          </div>
+
+          <!-- STAT 4: Awards Received -->
+          <div class="box">
+            <div class="number" data-goal="170">0</div>
+            <p>Awards Received</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           TESTIMONIALS & SKILLS SECTION
+           Left side: Client testimonials
+           Right side: Skill progress bars
+           ============================================ -->
+      <div class="our-skills">
+        <div class="container">
+          <!-- TESTIMONIALS SUBSECTION -->
+          <div class="testimonials">
+            <h3>Testimonials</h3>
+            <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
+
+            <!-- TESTIMONIAL 1 -->
+            <div class="content">
+              <img src="images/man-one.jpg" alt="Client" loading="lazy" />
+              <div class="text">
+                Great service!
+                <p>John Doe, CEO</p>
+              </div>
+            </div>
+
+            <!-- TESTIMONIAL 2 -->
+            <div class="content">
+              <img src="images/man-two.jpg" alt="Client" loading="lazy" />
+              <div class="text">
+                Amazing team.
+                <p>Jane Smith, Manager</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SKILLS SUBSECTION -->
+          <div class="skills">
+            <h3>Skills</h3>
+            <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
+
+            <!-- SKILL 1: Adobe (90%) -->
+            <div class="prog-holder">
+              <h4>Adobe</h4>
+              <div class="prog">
+                <span style="width: 0" data-prog="90%"></span>
+              </div>
+            </div>
+
+            <!-- SKILL 2: HTML & CSS (85%) -->
+            <div class="prog-holder">
+              <h4>HTML &amp; CSS</h4>
+              <div class="prog">
+                <span style="width: 0" data-prog="85%"></span>
+              </div>
+            </div>
+
+            <!-- SKILL 3: JavaScript (90%) -->
+            <div class="prog-holder">
+              <h4>JavaScript</h4>
+              <div class="prog">
+                <span style="width: 0" data-prog="90%"></span>
+              </div>
+            </div>
+
+            <!-- SKILL 4: PHP (80%) -->
+            <div class="prog-holder">
+              <h4>PHP</h4>
+              <div class="prog">
+                <span style="width: 0" data-prog="80%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           QUOTE SECTION
+           Inspirational quote with attribution
+           ============================================ -->
+      <div class="quote">
+        <div class="container">
+          <q>Accumsan id imperdiet et, porttitor at sem.</q
+          ><span>John Doe</span>
+        </div>
+      </div>
+
+      <!-- ============================================
+           PRICING SECTION
+           Displays 4 pricing plans with features & CTA buttons
+           ============================================ -->
+      <section id="price" class="pricing">
+        <div class="container">
+          <!-- SECTION HEADING -->
+          <div class="main-heading">
+            <h2>Pricing</h2>
+            <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
+          </div>
+
+          <!-- PRICING PLANS -->
+          <div class="plans">
+            <!-- PLAN 1: Basic ($19) -->
+            <div class="plan">
+              <div class="head">
+                <h3>Basic</h3>
+                <span class="rich" data-goal="19">0</span>
+              </div>
+              <ul>
+                <li>Feature No 1</li>
+                <li>Extra Feature</li>
+              </ul>
+              <div class="foot"><a href="#">Buy Now</a></div>
+            </div>
+
+            <!-- PLAN 2: Premium ($29) -->
+            <div class="plan">
+              <div class="head">
+                <h3>Premium</h3>
+                <span class="rich" data-goal="29">0</span>
+              </div>
+              <ul>
+                <li>Feature No 1</li>
+                <li>Extra Feature</li>
+              </ul>
+              <div class="foot"><a href="#">Buy Now</a></div>
+            </div>
+
+            <!-- PLAN 3: Pro ($39) -->
+            <div class="plan">
+              <div class="head">
+                <h3>Pro</h3>
+                <span class="rich" data-goal="39">0</span>
+              </div>
+              <ul>
+                <li>Feature No 1</li>
+                <li>Extra Feature</li>
+              </ul>
+              <div class="foot"><a href="#">Buy Now</a></div>
+            </div>
+
+            <!-- PLAN 4: Platinum ($49) -->
+            <div class="plan">
+              <div class="head">
+                <h3>Platinum</h3>
+                <span class="rich" data-goal="49">0</span>
+              </div>
+              <ul>
+                <li>Feature No 1</li>
+                <li>Extra Feature</li>
+              </ul>
+              <div class="foot"><a href="#">Buy Now</a></div>
+            </div>
+          </div>
+
+          <!-- CUSTOM REQUEST NOTICE & BUTTON -->
+          <p class="contact-text">Contact us if you have special request</p>
+          <a href="#" class="contact-link">Contact Us</a>
+        </div>
+      </section>
+
+      <!-- ============================================
+           EMAIL SUBSCRIPTION SECTION
+           Newsletter signup form
+           ============================================ -->
+      <div class="subscribe">
+        <div class="container">
+          <!-- SUBSCRIPTION FORM -->
+          <form>
+            <!-- EMAIL ICON -->
+            <svg viewBox="0 0 24 24" width="20" fill="white">
+              <path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"
+              /></svg>
+
+            <!-- EMAIL INPUT -->
+            <input type="email" placeholder="Your Email" required />
+
+            <!-- SUBMIT BUTTON -->
+            <input
+              type="submit"
+              value="Subscribe"
+            />
+          </form>
+
+          <!-- SUBSCRIPTION DESCRIPTION -->
+          <p>
+            Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+          </p>
+        </div>
+      </div>
+
+      <!-- ============================================
+           CONTACT SECTION
+           Contact form & company information
+           ============================================ -->
+      <section id="contact" class="contact">
+        <div class="container">
+          <!-- SECTION HEADING -->
+          <div class="main-heading">
+            <h2>Contact Us</h2>
+            <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
+          </div>
+
+          <!-- CONTACT FORM & INFO -->
+          <div class="content">
+            <!-- CONTACT FORM -->
+            <form>
+              <!-- NAME INPUT -->
+              <input
+                class="main-input"
+                type="text"
+                placeholder="Your Name"
+              />
+
+              <!-- EMAIL INPUT -->
+              <input
+                class="main-input"
+                type="email"
+                placeholder="Your Email"
+              />
+
+              <!-- MESSAGE TEXTAREA -->
+              <textarea
+                class="main-input"
+                placeholder="Your Message"
+              ></textarea>
+
+              <!-- SUBMIT BUTTON -->
+              <input type="submit" value="Send Message" />
+            </form>
+
+            <!-- COMPANY CONTACT INFO -->
+            <div class="info">
+              <!-- PHONE NUMBERS -->
+              <h4>Get In Touch</h4>
+              <span>+00 123.456.789</span><span>+00 123.456.789</span>
+
+              <!-- ADDRESS -->
+              <h4>Where We Are</h4>
+              <address>Awesome Address 17<br />New York, NYC<br />USA</address>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         Logo, social links, copyright info
+         ============================================ -->
+    <footer>
       <div class="container">
-        <div class="main-heading"><h2>About</h2><p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p></div>
-        <img src="images/devices-illustration.png" alt="Devices illustration" loading="lazy" />
-      </div>
-    </section>
+        <!-- FOOTER LOGO -->
+        <img src="images/kaspar-logo.png" alt="Kasper logo" />
 
-    <div class="stat">
-      <div class="container">
-        <div class="box">
-          <svg class="icon-svg" viewBox="0 0 24 24" width="30px" height="30px" fill="currentColor" aria-hidden="true">
-            <path d="M18 3H6v4c0 3.31 2.69 6 6 6s6-2.69 6-6V3zm-8 0h4v2h-4V3zm0 3h4v2h-4V6zm10 5h-2v-2h2c.55 0 1 .45 1 1s-.45 1-1 1zM5 20h14v-2H5v2zM3 18h2v2H3v-2zM19 18h2v2h-2v-2z" />
+        <!-- SOCIAL MEDIA SECTION -->
+        <p>We Are Social</p>
+        <div class="social">
+          <!-- FACEBOOK ICON -->
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"
+            /></svg>
+
+          <!-- TWITTER ICON -->
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417a9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0021.613-12.06c-.009-.478-.014-.956-.034-1.433a10 10 0 002.45-2.542z"
+            /></svg>
+
+          <!-- HOME/WEBSITE ICON -->
+          <svg viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
+
+          <!-- INSTAGRAM ICON -->
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4.5" />
+            <circle cx="17.5" cy="6.5" r="1" />
           </svg>
-          <div class="number" data-goal="1002">0</div>
-          <p>Coffee Drinks</p>
         </div>
-        <div class="box">
-          <svg class="icon-svg" viewBox="0 0 24 24" width="30px" height="30px" fill="currentColor" aria-hidden="true">
-            <path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" />
-          </svg>
-          <div class="number" data-goal="256">0</div>
-          <p>Completed Projects</p>
-        </div>
-        <div class="box">
-          <svg class="icon-svg" viewBox="0 0 24 24" width="30px" height="30px" fill="currentColor" aria-hidden="true">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-          </svg>
-          <div class="number" data-goal="743">0</div>
-          <p>Mail Sent</p>
-        </div>
-        <div class="box">
-          <svg class="icon-svg" viewBox="0 0 24 24" width="30px" height="30px" fill="currentColor" aria-hidden="true">
-            <path d="M12 2c-3.31 0-6 2.69-6 6v1c0 2.76 2.24 5 5 5v2H7v2h10v-2h-4v-2c2.76 0 5-2.24 5-5V8c0-3.31-2.69-6-6-6zm0 9c-1.66 0-3-1.34-3-3V8c0-1.66 1.34-3 3-3s3 1.34 3 3v2c0 1.66-1.34 3-3 3z" />
-          </svg>
-          <div class="number" data-goal="170">0</div>
-          <p>Awards Received</p>
+
+        <!-- COPYRIGHT TEXT -->
+        <div class="text">
+          &copy; 2021 <span>Kasper</span> All Right Reserved
         </div>
       </div>
-    </div>
+    </footer>
 
-    <div class="our-skills">
-      <div class="container">
-        <div class="testimonials"><h3>Testimonials</h3><p>Curabitur arcu erat, accumsan id imperdiet et.</p>
-          <div class="content"><img src="images/man-one.jpg" alt="Client John Doe" loading="lazy" /><div class="text">Great service and creative work!<p>John Doe, CEO</p></div></div>
-          <div class="content"><img src="images/man-two.jpg" alt="Client Jane Smith" loading="lazy" /><div class="text">Amazing team and designs.<p>Jane Smith, Manager</p></div></div>
-          <ul class="bullets"><li></li><li class="active"></li><li></li></ul>
-        </div>
-        <div class="skills"><h3>Skills</h3><p>Curabitur arcu erat, accumsan id imperdiet et.</p>
-          <div class="prog-holder"><h4>Adobe</h4><div class="prog"><span style="width:0" data-prog="90%"></span></div></div>
-          <div class="prog-holder"><h4>HTML &amp; CSS</h4><div class="prog"><span style="width:0" data-prog="85%"></span></div></div>
-          <div class="prog-holder"><h4>JavaScript</h4><div class="prog"><span style="width:0" data-prog="90%"></span></div></div>
-          <div class="prog-holder"><h4>PHP</h4><div class="prog"><span style="width:0" data-prog="80%"></span></div></div>
-        </div>
-      </div>
-    </div>
+    <!-- ============================================
+         SCROLL TO TOP BUTTON
+         Floating button to return to page top
+         ============================================ -->
+    <button class="scroll-top-btn" aria-label="Scroll to top">↑</button>
 
-    <div class="quote"><div class="container"><q>Accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt.</q><span>John Doe</span></div></div>
-
-    <section id="price" class="pricing">
-      <div class="container">
-        <div class="main-heading"><h2>Pricing</h2><p>Curabitur arcu erat, accumsan id imperdiet et.</p></div>
-        <div class="plans">
-          <div class="plan"><div class="head"><h3>Basic</h3><span class="rich" data-goal="19">0</span></div><ul><li>Feature No 1</li><li>Extra Feature</li><li>Extra Feature No 2</li><li>Feature</li></ul><div class="foot"><a href="#">Buy Now</a></div></div>
-          <div class="plan"><div class="head"><h3>Premium</h3><span class="rich" data-goal="29">0</span></div><ul><li>Feature No 1</li><li>Extra Feature</li><li>Extra Feature No 2</li><li>Feature</li></ul><div class="foot"><a href="#">Buy Now</a></div></div>
-          <div class="plan"><div class="head"><h3>Pro</h3><span class="rich" data-goal="39">0</span></div><ul><li>Feature No 1</li><li>Extra Feature</li><li>Extra Feature No 2</li><li>Feature</li></ul><div class="foot"><a href="#">Buy Now</a></div></div>
-          <div class="plan"><div class="head"><h3>Platinum</h3><span class="rich" data-goal="49">0</span></div><ul><li>Feature No 1</li><li>Extra Feature</li><li>Extra Feature No 2</li><li>Feature</li></ul><div class="foot"><a href="#">Buy Now</a></div></div>
-        </div>
-        <p class="contact-text">Contact us if you have special request</p><a href="#" class="contact-link">Contact Us</a>
-      </div>
-    </section>
-
-    <div class="subscribe">
-      <div class="container">
-        <form action="#" method="post">
-          <svg class="icon-svg" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-          </svg>
-          <input type="email" name="mail" placeholder="Your Email" aria-label="Email for subscription" required />
-          <input type="submit" value="Subscribe" />
-        </form>
-        <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blan dit aliquet elit.</p>
-      </div>
-    </div>
-
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="main-heading"><h2>Contact Us</h2><p>Curabitur arcu erat, accumsan id imperdiet et.</p></div>
-        <div class="content">
-          <form><input class="main-input" type="text" name="name" placeholder="Your Name" /><input class="main-input" type="email" name="mail" placeholder="Your Email" /><textarea class="main-input" name="message" placeholder="Your Message"></textarea><input type="submit" value="Send Message" /></form>
-          <div class="info"><h4>Get In Touch</h4><span class="phone">+00 123.456.789</span><span class="phone">+00 123.456.789</span><h4>Where We Are</h4><address>Awesome Address 17<br />New York, NYC<br />123-4567-890<br />USA</address></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <img src="images/kaspar-logo.png" alt="Kasper logo" loading="lazy" />
-      <p>We Are Social</p>
-      <div class="social">
-        <svg class="icon-svg" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
-        </svg>
-        <svg class="icon-svg" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0021.613-12.06c-.009-.478-.014-.956-.034-1.433a10 10 0 002.45-2.542z" />
-        </svg>
-        <svg class="icon-svg" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-        </svg>
-        <svg class="icon-svg" viewBox="0 0 24 24" width="1.2em" height="1.2em" fill="currentColor" aria-hidden="true">
-          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-        </svg>
-      </div>
-      <div class="text">&copy; 2021 <span>Kasper</span> All Right Reserved</div>
-    </div>
-  </footer>
-
- <script src="js/main.js"></script>
-</body>
+    <!-- ============================================
+         JAVASCRIPT
+         Main script file for interactivity
+         ============================================ -->
+    <script src="js/main.js"></script>
+  </body>
 </html>

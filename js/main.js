@@ -1,241 +1,232 @@
-class ImageSlider {
-  constructor(options = {}) {
-    // Configuration
-    this.autoplayInterval = options.autoplayInterval || 5000;
-    this.enableKeyboard = options.enableKeyboard !== false;
-    this.enableTouch = options.enableTouch !== false;
-    this.transitionDuration = options.transitionDuration || 600;
-    this.preloadImages = options.preloadImages !== false;
+(function () {
+  // ----- ENHANCED MOBILE NAVIGATION + SCROLL TO TOP -----
+  const toggleBtn = document.querySelector(".toggle-menu");
+  const navUl = document.querySelector("#main-nav-list");
+  const closeBtn = document.querySelector(".close-nav-btn");
+  const navLinks = document.querySelectorAll("#main-nav-list a");
+  const body = document.body;
 
-    // Elements
-    this.landing = document.querySelector(options.container || ".landing");
-    this.nextBtn = document.querySelector(options.nextBtn || ".fa-angle-right");
-    this.prevBtn = document.querySelector(options.prevBtn || ".fa-angle-left");
-    this.bullets = document.querySelectorAll(options.bullets || ".bullets li");
-    this.images = options.images || [];
-
-    // State
-    this.currentIndex = 0;
-    this.isTransitioning = false;
-    this.autoplayTimer = null;
-    this.touchStartX = 0;
-
-    // Initialize
-    this.init();
+  function openMenu() {
+    if (!navUl) return;
+    navUl.classList.add("open");
+    toggleBtn?.setAttribute("aria-expanded", "true");
+    body.classList.add("nav-open");
   }
-
-  init() {
-    if (!this.landing || this.images.length === 0) {
-      console.error("Slider: Missing required elements or images");
-      return;
-    }
-
-    this.preloadImages && this.preloadAllImages();
-    this.attachEventListeners();
-    this.setBackground(this.currentIndex);
-    this.startAutoplay();
-    this.announceSlide();
+  function closeMenu() {
+    if (!navUl) return;
+    navUl.classList.remove("open");
+    toggleBtn?.setAttribute("aria-expanded", "false");
+    body.classList.remove("nav-open");
   }
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (navUl?.classList.contains("open")) closeMenu();
+      else openMenu();
+    });
+  }
+  if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+  navLinks.forEach((link) => link.addEventListener("click", closeMenu));
+  // close on background click (if clicked on ul background)
+  navUl?.addEventListener("click", (e) => {
+    if (e.target === navUl) closeMenu();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navUl?.classList.contains("open")) closeMenu();
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768 && navUl?.classList.contains("open"))
+      closeMenu();
+  });
 
-  // Preload images for smoother transitions
-  preloadAllImages() {
-    this.images.forEach(src => {
-      const img = new Image();
-      img.src = src;
+  // Scroll to top button
+  const scrollBtn = document.querySelector(".scroll-top-btn");
+  if (scrollBtn) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) scrollBtn.classList.add("visible");
+      else scrollBtn.classList.remove("visible");
+    });
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
-  // Set background with fade transition
-  setBackground(index) {
-    if (this.isTransitioning || index === this.currentIndex) return;
-
-    this.isTransitioning = true;
-    this.currentIndex = index;
-
-    // Fade out
-    this.landing.style.opacity = "0.7";
-
-    setTimeout(() => {
-      this.landing.style.backgroundImage = `url(${this.images[index]})`;
-      this.landing.style.opacity = "1";
-      this.updateBullets();
-      this.announceSlide();
+  // ----- IMAGE SLIDER (improved) -----
+  class ImageSlider {
+    constructor(options) {
+      this.autoplayInterval = options.autoplayInterval || 5000;
+      this.landing = document.querySelector(options.container || ".landing");
+      this.nextBtn = document.querySelector(
+        options.nextBtn || ".fa-angle-right",
+      );
+      this.prevBtn = document.querySelector(
+        options.prevBtn || ".fa-angle-left",
+      );
+      this.bullets = document.querySelectorAll(
+        options.bullets || ".bullets li",
+      );
+      this.images = options.images || [];
+      this.currentIndex = 0;
       this.isTransitioning = false;
-    }, this.transitionDuration / 2);
-
-    this.restartAutoplay();
-  }
-
-  // Update bullet indicators
-  updateBullets() {
-    this.bullets.forEach((bullet, idx) => {
-      bullet.classList.toggle("active", idx === this.currentIndex);
-      bullet.setAttribute("aria-current", idx === this.currentIndex ? "true" : "false");
-    });
-  }
-
-  // Announce current slide for accessibility
-  announceSlide() {
-    const message = `Slide ${this.currentIndex + 1} of ${this.images.length}`;
-    const announcement = document.createElement("div");
-    announcement.setAttribute("role", "status");
-    announcement.setAttribute("aria-live", "polite");
-    announcement.className = "sr-only";
-    announcement.textContent = message;
-    document.body.appendChild(announcement);
-    setTimeout(() => announcement.remove(), 1000);
-  }
-
-  // Navigation
-  nextSlide = () => {
-    const next = (this.currentIndex + 1) % this.images.length;
-    this.setBackground(next);
-  };
-
-  prevSlide = () => {
-    const prev = (this.currentIndex - 1 + this.images.length) % this.images.length;
-    this.setBackground(prev);
-  };
-
-  goToSlide = (index) => {
-    if (index >= 0 && index < this.images.length) {
-      this.setBackground(index);
+      this.autoplayTimer = null;
+      if (!this.landing || this.images.length === 0) return;
+      this.preloadImages();
+      this.attachEvents();
+      this.setBackground(0);
+      this.startAutoplay();
     }
-  };
-
-  // Autoplay management
-  startAutoplay() {
-    this.autoplayTimer = setInterval(this.nextSlide, this.autoplayInterval);
-  }
-
-  restartAutoplay() {
-    clearInterval(this.autoplayTimer);
-    this.startAutoplay();
-  }
-
-  stopAutoplay() {
-    clearInterval(this.autoplayTimer);
-  }
-
-  // Event listeners
-  attachEventListeners() {
-    // Button clicks
-    this.nextBtn?.addEventListener("click", this.nextSlide);
-    this.prevBtn?.addEventListener("click", this.prevSlide);
-
-    // Bullet clicks
-    this.bullets.forEach((bullet, index) => {
-      bullet.addEventListener("click", () => this.goToSlide(index));
-      // Keyboard support for bullets
-      bullet.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          this.goToSlide(index);
-        }
+    preloadImages() {
+      this.images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
       });
-    });
-
-    // Keyboard navigation
-    if (this.enableKeyboard) {
+    }
+    setBackground(index) {
+      if (this.isTransitioning || index === this.currentIndex) return;
+      this.isTransitioning = true;
+      this.currentIndex = index;
+      this.landing.style.opacity = "0.7";
+      setTimeout(() => {
+        this.landing.style.backgroundImage = `url(${this.images[index]})`;
+        this.landing.style.opacity = "1";
+        this.updateBullets();
+        this.isTransitioning = false;
+      }, 300);
+      this.restartAutoplay();
+    }
+    updateBullets() {
+      this.bullets.forEach((b, i) => {
+        b.classList.toggle("active", i === this.currentIndex);
+        b.setAttribute(
+          "aria-current",
+          i === this.currentIndex ? "true" : "false",
+        );
+      });
+    }
+    nextSlide = () => {
+      this.setBackground((this.currentIndex + 1) % this.images.length);
+    };
+    prevSlide = () => {
+      this.setBackground(
+        (this.currentIndex - 1 + this.images.length) % this.images.length,
+      );
+    };
+    goToSlide = (idx) => {
+      if (idx >= 0 && idx < this.images.length) this.setBackground(idx);
+    };
+    startAutoplay() {
+      this.autoplayTimer = setInterval(this.nextSlide, this.autoplayInterval);
+    }
+    restartAutoplay() {
+      clearInterval(this.autoplayTimer);
+      this.startAutoplay();
+    }
+    attachEvents() {
+      this.nextBtn?.addEventListener("click", this.nextSlide);
+      this.prevBtn?.addEventListener("click", this.prevSlide);
+      this.bullets.forEach((bullet, idx) =>
+        bullet.addEventListener("click", () => this.goToSlide(idx)),
+      );
       document.addEventListener("keydown", (e) => {
         if (e.key === "ArrowRight") this.nextSlide();
         if (e.key === "ArrowLeft") this.prevSlide();
       });
+      this.landing?.addEventListener("mouseenter", () =>
+        clearInterval(this.autoplayTimer),
+      );
+      this.landing?.addEventListener("mouseleave", () => this.startAutoplay());
     }
+  }
+  if (document.querySelector(".landing")) {
+    new ImageSlider({
+      container: ".landing",
+      nextBtn: ".fa-angle-right",
+      prevBtn: ".fa-angle-left",
+      bullets: ".bullets li",
+      images: [
+        "images/slider/blue-owl-branch-of-tree.webp",
+        "images/slider/frogs.jpg",
+        "images/slider/whale.jpg",
+      ],
+      autoplayInterval: 2000,
+    });
+  }
 
-    // Touch/swipe support
-    if (this.enableTouch) {
-      this.landing.addEventListener("touchstart", (e) => {
-        this.touchStartX = e.touches[0].clientX;
-      });
-
-      this.landing.addEventListener("touchend", (e) => {
-        const touchEndX = e.changedTouches[0].clientX;
-        const diff = this.touchStartX - touchEndX;
-
-        if (Math.abs(diff) > 50) { // Minimum swipe distance
-          diff > 0 ? this.nextSlide() : this.prevSlide();
+  // Stats and Pricing number animation
+  const statSection = document.querySelector(".stat");
+  const priceSection = document.querySelector(".pricing");
+  let countedStats = false,
+    countedPrices = false;
+  function animateNumbers(elements) {
+    elements.forEach((el) => {
+      const goal = parseInt(el.dataset.goal);
+      if (isNaN(goal)) return;
+      let current = 0;
+      const increment = Math.ceil(goal / 55);
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= goal) {
+          el.textContent = goal;
+          clearInterval(timer);
+        } else el.textContent = current;
+      }, 25);
+    });
+  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === statSection && !countedStats) {
+            countedStats = true;
+            animateNumbers(document.querySelectorAll(".stat .number"));
+          }
+          if (entry.target === priceSection && !countedPrices) {
+            countedPrices = true;
+            animateNumbers(document.querySelectorAll(".rich"));
+          }
         }
       });
-    }
+    },
+    { threshold: 0.3 },
+  );
+  if (statSection) observer.observe(statSection);
+  if (priceSection) observer.observe(priceSection);
 
-    // Pause autoplay on hover
-    this.landing.addEventListener("mouseenter", () => this.stopAutoplay());
-    this.landing.addEventListener("mouseleave", () => this.startAutoplay());
-  }
-
-  // Cleanup
-  destroy() {
-    clearInterval(this.autoplayTimer);
-    this.nextBtn?.removeEventListener("click", this.nextSlide);
-    this.prevBtn?.removeEventListener("click", this.prevSlide);
-  }
-}
-
-// Usage
-const slider = new ImageSlider({
-  container: ".landing",
-  nextBtn: ".fa-angle-right",
-  prevBtn: ".fa-angle-left",
-  bullets: ".bullets li",
-  images: [
-    "images/slider/blue-owl-branch-of-tree.webp",
-    "images/slider/frogs.jpg",
-    "images/slider/whale.jpg"
-  ],
-  autoplayInterval: 5000,
-  enableKeyboard: true,
-  enableTouch: true,
-  preloadImages: true
-});
-
-
-
-    (function () {
-      const toggleBtn = document.querySelector(".toggle-menu");
-      const navUl = document.querySelector("#main-nav-list");
-      const closeBtn = document.querySelector(".close-nav-btn");
-      function openMenu() { navUl.classList.add("open"); toggleBtn.setAttribute("aria-expanded", "true"); }
-      function closeMenu() { navUl.classList.remove("open"); toggleBtn.setAttribute("aria-expanded", "false"); }
-      if (toggleBtn) toggleBtn.addEventListener("click", openMenu);
-      if (closeBtn) closeBtn.addEventListener("click", closeMenu);
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && navUl?.classList.contains("open")) closeMenu(); });
-
-      const statSection = document.querySelector(".stat");
-      const priceSection = document.querySelector(".pricing");
-      let countedStats = false, countedPrices = false;
-      function animateNumbers(elements) {
-        elements.forEach((el) => {
-          const goal = parseInt(el.dataset.goal);
-          if (isNaN(goal)) return;
-          let current = 0;
-          const increment = Math.ceil(goal / 50);
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= goal) { el.textContent = goal; clearInterval(timer); }
-            else el.textContent = current;
-          }, 25);
+  // Skills progress bars
+  const skillSection = document.querySelector(".our-skills");
+  const progressSpans = document.querySelectorAll(".prog span");
+  let skillsAnimated = false;
+  const skillObserver = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && !skillsAnimated) {
+        skillsAnimated = true;
+        progressSpans.forEach((span) => {
+          span.style.width = span.dataset.prog;
         });
       }
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target === statSection && !countedStats) { countedStats = true; animateNumbers(document.querySelectorAll(".stat .number")); }
-            if (entry.target === priceSection && !countedPrices) { countedPrices = true; animateNumbers(document.querySelectorAll(".rich")); }
-          }
-        });
-      }, { threshold: 0.3 });
-      if (statSection) observer.observe(statSection);
-      if (priceSection) observer.observe(priceSection);
+    },
+    { threshold: 0.4 },
+  );
+  if (skillSection) skillObserver.observe(skillSection);
 
-      const skillSection = document.querySelector(".our-skills");
-      const progressSpans = document.querySelectorAll(".prog span");
-      let skillsAnimated = false;
-      const skillObserver = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !skillsAnimated) {
-          skillsAnimated = true;
-          progressSpans.forEach((span) => { span.style.width = span.dataset.prog; });
-        }
-      }, { threshold: 0.4 });
-      if (skillSection) skillObserver.observe(skillSection);
-    })();
+  // Active link highlighting while scrolling
+  const sections = document.querySelectorAll("section[id], div[id]");
+  const navItems = document.querySelectorAll("#main-nav-list a");
+  function setActiveLink() {
+    let scrollPos = window.scrollY + 150;
+    sections.forEach((section) => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute("id");
+      if (scrollPos >= top && scrollPos < top + height && id) {
+        navItems.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${id}`)
+            link.classList.add("active");
+        });
+      }
+    });
+  }
+  window.addEventListener("scroll", setActiveLink);
+  setActiveLink();
+})();
