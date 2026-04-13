@@ -27,7 +27,7 @@
   }
   if (closeBtn) closeBtn.addEventListener("click", closeMenu);
   navLinks.forEach((link) => link.addEventListener("click", closeMenu));
-  // close on background click (if clicked on ul background)
+  // close on background click
   navUl?.addEventListener("click", (e) => {
     if (e.target === navUl) closeMenu();
   });
@@ -50,6 +50,34 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
+
+  // ----- ACTIVE LINK ON CLICK + SMOOTH SCROLL (NEW) -----
+  function setActiveLink(activeLink) {
+    navLinks.forEach((link) => link.classList.remove("active"));
+    activeLink.classList.add("active");
+  }
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // Only handle internal anchor links
+      const hash = this.getAttribute("href");
+      if (hash && hash.startsWith("#")) {
+        e.preventDefault();
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+          // Update active class immediately
+          setActiveLink(this);
+          // Smooth scroll to target
+          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Update URL hash without jumping (optional)
+          history.pushState(null, null, hash);
+        }
+      } else {
+        // For non-anchor links, just update active class
+        setActiveLink(this);
+      }
+    });
+  });
 
   // ----- IMAGE SLIDER (improved) -----
   class ImageSlider {
@@ -74,6 +102,21 @@
       this.attachEvents();
       this.setBackground(0);
       this.startAutoplay();
+      this.init(); 
+    }
+
+    init() {
+      const firstImage = new Image();
+      firstImage.src = this.images[0];
+      firstImage.onload = () => {
+        // اعرض أول صورة فورًا بدون delay
+        this.landing.style.backgroundImage = `url(${this.images[0]})`;
+        this.updateBullets();
+        // بعد كده كمل باقي الإعداد
+        this.preloadImages();
+        this.attachEvents();
+        this.startAutoplay();
+      };
     }
     preloadImages() {
       this.images.forEach((src) => {
@@ -148,7 +191,7 @@
         "images/slider/frogs.jpg",
         "images/slider/whale.jpg",
       ],
-      autoplayInterval: 2000,
+      autoplayInterval: 3000,
     });
   }
 
@@ -209,24 +252,28 @@
   );
   if (skillSection) skillObserver.observe(skillSection);
 
-  // Active link highlighting while scrolling
+  // Active link highlighting while scrolling (scroll-spy)
   const sections = document.querySelectorAll("section[id], div[id]");
-  const navItems = document.querySelectorAll("#main-nav-list a");
-  function setActiveLink() {
+  function updateActiveOnScroll() {
     let scrollPos = window.scrollY + 150;
+    let activeId = null;
     sections.forEach((section) => {
       const top = section.offsetTop;
       const height = section.offsetHeight;
       const id = section.getAttribute("id");
       if (scrollPos >= top && scrollPos < top + height && id) {
-        navItems.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${id}`)
-            link.classList.add("active");
-        });
+        activeId = id;
       }
     });
+    if (activeId) {
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${activeId}`) {
+          link.classList.add("active");
+        }
+      });
+    }
   }
-  window.addEventListener("scroll", setActiveLink);
-  setActiveLink();
+  window.addEventListener("scroll", updateActiveOnScroll);
+  updateActiveOnScroll(); // initial call
 })();
