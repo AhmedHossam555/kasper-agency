@@ -419,6 +419,7 @@ header .form svg {
   display: flex;
   align-items: center;
   overflow: hidden;
+
 }
 .design::before {
   content: "";
@@ -438,6 +439,19 @@ header .form svg {
   max-width: 100%;
   margin: 0 auto;
 }
+.design .image-design img {
+  transform: translateY(120px);
+  opacity: 0;
+  transition: all 0.8s ease-out;
+  will-change: transform, opacity;
+}
+
+/* when visible */
+.design.show .image-design img {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 @media (max-width: 767px) {
   .design .image-design {
     display: none;
@@ -449,25 +463,64 @@ header .form svg {
   color: white;
   backdrop-filter: blur(4px);
 }
+/* ─── PORTFOLIO FILTER (ENHANCED UI) ───────────────────────────── */
 .portfolio {
-  padding: var(--section-padding) 0;
+  text-align: center;
 }
 .shuffle {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 10px;
+  margin-top: 20px;
 }
+
 .shuffle li {
-  padding: 10px 20px;
+  padding: 10px 22px;
   cursor: pointer;
-  transition: 0.2s;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 14px;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
-.shuffle li.active,
+
+/* Hover effect */
 .shuffle li:hover {
-  background-color: var(--main-color);
+  transform: translateY(-2px);
   color: #fff;
 }
+
+/* Active */
+.shuffle li.active {
+  background: var(--main-color);
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.shuffle li::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--main-color);
+  z-index: -1;
+  transition: 0.3s;
+}
+
+.shuffle li:hover::before {
+  width: 100%;
+}
+
 .content-portfolio {
   display: flex;
   flex-wrap: wrap;
@@ -510,11 +563,14 @@ header .form svg {
   background-color: var(--main-color);
   text-decoration: none;
   display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
   padding: 14px 30px;
   color: #fff;
   margin: 40px auto 0;
   width: fit-content;
   transition: 0.2s;
+  margin-bottom: 1rem;
 }
 .video {
   position: relative;

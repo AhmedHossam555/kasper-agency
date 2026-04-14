@@ -369,17 +369,17 @@
 
           <!-- Portfolio Filter Buttons -->
           <ul class="shuffle">
-            <li class="active">All</li>
-            <li>App</li>
-            <li>Photo</li>
-            <li>Web</li>
-            <li>Print</li>
+            <li class="active" data-filter="all">All</li>
+            <li data-filter="app">App</li>
+            <li data-filter="photo">Photo</li>
+            <li data-filter="web">Web</li>
+            <li data-filter="print">Print</li>
           </ul>
         </div>
 
         <!-- Portfolio Items Grid -->
         <div class="content-portfolio">
-          <div class="box">
+          <div class="box" data-category="app">
             <img
               src="images/portfolio/colored-photo.jpg"
               alt="Creative artwork"
@@ -390,7 +390,7 @@
               <p>Photography</p>
             </div>
           </div>
-          <div class="box">
+          <div class="box" data-category="photo">
             <img
               src="images/portfolio/fashion-illustrator.jpg"
               alt="Abstract design"
@@ -401,7 +401,7 @@
               <p>Photography</p>
             </div>
           </div>
-          <div class="box">
+          <div class="box" data-category="web">
             <img
               src="images/portfolio/chair.jpg"
               alt="Modern layout"
@@ -412,7 +412,7 @@
               <p>Photography</p>
             </div>
           </div>
-          <div class="box">
+          <div class="box" data-category="print">
             <img
               src="images/portfolio/portfolio.jpg"
               alt="Branding shot"
@@ -467,8 +467,8 @@
               <p>Photography</p>
             </div>
           </div>
-          <a href="#" class="more">More</a>
         </div>
+        <a href="#" class="more">More</a>
       </section>
 
       <!-- ──────────────────────────────────────────────────────────── -->
@@ -705,7 +705,7 @@
     <!-- ───────────────────────────────────────────────────────────── -->
     <footer>
       <div class="container">
-        <img src="images/kaspar-logo.png" alt="Kasper logo" />
+        <img src="images/kaspar-logo.png" loading="lazy" alt="Kasper logo" />
         <p>We Are Social</p>
         <div class="social">
           <svg viewBox="0 0 24 24">
