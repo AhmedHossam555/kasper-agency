@@ -1,85 +1,167 @@
-# Kasper – Creative Digital Agency
+# Kasper - Creative Digital Agency Website
 
-A modern, responsive landing page for a creative agency. Built with semantic HTML5, CSS3, and vanilla JavaScript. Features a full-screen carousel, dynamic portfolio filter, animated counters, skill progress bars, pricing tables, contact form, and mobile-first navigation.
-
-## Live Demo
-
-You can open the `index.html` file directly in any modern browser.
-
-## Features
-
-- Fully responsive design (mobile, tablet, desktop)
-- Accessible navigation with skip link and ARIA labels
-- Dynamic background carousel for the hero section
-- Portfolio gallery with category filtering (All, App, Photo, Web, Print)
-- Animated statistics counters (Intersection Observer)
-- Skill progress bars that fill on scroll
-- Pricing section with smooth numeric animation
-- Video background section with custom overlay
-- Newsletter subscription form & contact form (demo alerts)
-- Scroll-to-top button
-- Semantic HTML & CSS Grid / Flexbox layouts
-- Clean, maintainable vanilla JavaScript
-
-## File Structure
-kasper-agency/
-├── index.html # Main HTML file (includes all styles & scripts inline)
-├── README.md # Project documentation
-└── (optional assets) # Images, videos, or fonts (external placeholders used)
-
-text
-
-> **Note:** The project uses placeholder images from `picsum.photos`, `randomuser.me`, and a sample video from MDN. For production, replace with your own assets.
-
-## Technologies Used
-
-- HTML5
-- CSS3 (Flexbox, Grid, custom properties, transitions)
-- JavaScript (ES6+)
-- Google Fonts (Open Sans)
-- Intersection Observer API
-
-## Setup & Usage
-
-1. Clone or download the repository.
-2. Open `index.html` in your browser.
-3. No build steps or dependencies required – it runs out-of-the-box.
-
-### Customization
-
-- **Change images:** Replace the `src` attributes in the `.landing`, `.design`, `.portfolio .box img`, and `.stat` background URLs.
-- **Modify portfolio items:** Edit the `portfolioItems` array inside the `<script>` tag.
-- **Update pricing numbers:** Change `data-goal` attributes on `.rich` spans.
-- **Replace video source:** Update the `<video>` `src` attribute.
-
-## Browser Support
-
-Latest versions of Chrome, Firefox, Safari, Edge. Also works on iOS and Android.
-
-## Accessibility
-
-- Skip to main content link
-- ARIA labels for interactive elements
-- High contrast and focus states
-- Semantic headings and landmarks
-
-## Performance
-
-- Lazy loading for images (`loading="lazy"`)
-- CSS transitions optimized
-- JavaScript runs after DOM content loaded (inline at bottom)
-
-## Credits
-
-- Design inspired by modern agency layouts
-- Icons from Material Design (SVG paths)
-- Placeholder images from [Picsum](https://picsum.photos/) & [RandomUser](https://randomuser.me/)
-- Sample video from [MDN](https://developer.mozilla.org/)
-
-## License
-
-This project is free for personal and commercial use. Attribution is appreciated but not required.
+A modern, fully responsive, and accessibility-compliant creative digital agency website built with **HTML5, CSS3, and Vanilla JavaScript**. The project emphasizes performance optimization, clean user interface design, smooth animations, and scalable CSS architecture using the BEM (Block Element Modifier) methodology.
 
 ---
 
-**Kasper** – *We make art and technology work together.*
+## Live Demo
+
+> [View Live Preview](https://your-domain.com)
+
+---
+
+## Project Overview
+
+This professional portfolio website demonstrates expertise in modern front-end development with a focus on responsive design, performance optimization, and user experience excellence. The implementation showcases best practices in vanilla JavaScript architecture, CSS organization, and semantic HTML5 structure.
+
+---
+
+## Screenshots
+
+![Kasper Website Screenshot](images/screen/kaspar-website.png)
+
+---
+
+## Key Features
+
+- **Responsive Design**: Mobile-first approach with full compatibility across all device sizes
+- **Performance Optimized**: Lazy loading, optimized font delivery, and minimal DOM reflows
+- **Interactive Components**:
+  - Auto-playing image slider with manual controls
+  - Animated statistics counters with scroll detection
+  - Skills progress visualization
+  - Filterable portfolio gallery
+  - Full-width video integration
+- **User Experience**: Smooth animations, testimonials section, pricing plans, contact form UI
+- **Navigation**: Mobile-responsive menu with accessible toggle controls
+- **Accessibility**: Comprehensive WCAG compliance including ARIA labels, skip links, and keyboard navigation
+- **Architecture**: Modular JavaScript with IntersectionObserver-based animations and BEM CSS structure
+
+---
+
+## Technology Stack
+
+| Technology            | Purpose                                                    |
+| --------------------- | ---------------------------------------------------------- |
+| **HTML5**             | Semantic markup and structure                              |
+| **CSS3**              | Flexbox, Grid, custom properties, animations               |
+| **JavaScript (ES6+)** | DOM manipulation, event handling, IntersectionObserver API |
+| **SVG Icons**         | Scalable vector graphics                                   |
+| **Google Fonts**      | Open Sans typography                                       |
+
+---
+
+## Project Structure
+
+```
+project-root/
+├── index.html
+├── styles/
+│   └── style.css
+├── js/
+│   └── main.js
+├── images/
+│   ├── slider/
+│   ├── portfolio/
+│   └── screen/
+└── README.md
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- A modern web browser (Chrome, Firefox, Safari, Edge)
+- No build tools or dependencies required
+
+### Installation & Execution
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/kasper-agency.git
+   cd kasper-agency
+   ```
+
+2. **Open in browser:**
+
+   ```bash
+   start index.html
+   ```
+
+   Or simply open `index.html` directly in your web browser.
+
+---
+
+## Component Features
+
+### Image Slider Component
+
+- Automatic background rotation with 4-second intervals
+- Manual navigation controls (previous/next buttons)
+- Visual slide indicators with bullet navigation
+
+### Statistics Animation
+
+- Real-time counter animations triggered on viewport entry
+- Powered by IntersectionObserver API for optimal performance
+
+### Skills Visualization
+
+- Animated progress bars with scroll-triggered activation
+- Smooth width transitions with CSS animations
+
+### Portfolio Filtering System
+
+- Category-based filtering (App, Web, Photo, Print)
+- Dynamic DOM manipulation with efficient event delegation
+
+### Mobile Navigation
+
+- Full-screen slide-in menu for mobile devices
+- Keyboard support (ESC key to close)
+- Touch-friendly interface controls
+
+### Performance Features
+
+- Lazy loading for images (`loading="lazy"` attribute)
+- Font preconnection for Google Fonts
+- Optimized font loading strategy
+- Minimal DOM reflows and repaints
+- Efficient event delegation patterns
+
+### Accessibility Implementation
+
+- Skip-to-content navigation link
+- ARIA labels and semantic HTML structure
+- Keyboard navigation support
+- Focus-visible styling for keyboard users
+- WCAG 2.1 Level AA compliance
+
+---
+
+## Development Notes
+
+This project serves as a professional portfolio demonstration of front-end development capabilities, emphasizing:
+
+- Clean, maintainable code architecture
+- Performance optimization techniques
+- Modern CSS and JavaScript patterns
+- Responsive design principles
+- Accessibility best practices
+
+---
+
+## Author
+
+**Ahmed Hossam**  
+Frontend Developer  
+[Portfolio](https://your-portfolio.com) | [GitHub](https://github.com/your-username)
+
+---
+
+## License
+
+This project is licensed under the **MIT License** - see the LICENSE file for details.
