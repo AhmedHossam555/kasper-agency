@@ -6,7 +6,7 @@ A modern, fully responsive, and accessibility-compliant creative digital agency 
 
 ## Live Demo
 
-> [View Live Preview](https://your-domain.com)
+> [View Live Preview](kasper-agency-eight.vercel.app)
 
 ---
 
@@ -16,9 +16,9 @@ This professional portfolio website demonstrates expertise in modern front-end d
 
 ---
 
-## Screenshots
+## Kasper Website
 
-![Kasper Website Screenshot](images/screen/kaspar-website.png)
+![Kasper Creative Digital Agency](images/screen/kaspar-website.png)
 
 ---
 
@@ -54,17 +54,28 @@ This professional portfolio website demonstrates expertise in modern front-end d
 ## Project Structure
 
 ```
-project-root/
-├── index.html
-├── styles/
-│   └── style.css
-├── js/
-│   └── main.js
-├── images/
-│   ├── slider/
-│   ├── portfolio/
-│   └── screen/
-└── README.md
+kasper-agency/
+├── images/                 # Root directory for all visual assets
+│   ├── portfolio/          # Images specific to the portfolio section
+│   ├── screen/             # UI/UX screen captures or mockups
+│   ├── slider/             # Images intended for a carousel or slider
+│   ├── alonso-reyes.jpg
+│   ├── amazing-under-water-life.mp4
+│   ├── colorized-image.jpg
+│   ├── devices-illustration.png
+│   ├── diamond.jpg
+│   ├── iphone_8_8_plus.webp
+│   ├── kaspar-logo.png
+│   ├── man-one.jpg
+│   ├── man-two.jpg
+│   ├── nebula-blue-space.jpg
+│   └── purple-hd-2K-wallpaper-middle-size.jpg
+├── js/                     # JavaScript logic
+│   └── main.js             # Primary script file
+├── styles/                 # CSS stylesheets
+│   └── style.css           # Main styling file
+├── index.html              # Main entry point for the website
+└── README.md               # Project documentation and instructions
 ```
 
 ---
@@ -81,7 +92,7 @@ project-root/
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/kasper-agency.git
+   git clone https://github.com/AhmedHossam555/kasper-agency.git
    cd kasper-agency
    ```
 
@@ -158,7 +169,7 @@ This project serves as a professional portfolio demonstration of front-end devel
 
 **Ahmed Hossam**  
 Frontend Developer  
-[Portfolio](https://your-portfolio.com) | [GitHub](https://github.com/your-username)
+[GitHub](https://github.com/AhmedHossam555)
 
 ---
 
