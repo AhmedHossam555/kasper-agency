@@ -126,12 +126,12 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- ──────────────────────────────────────────────────────────── -->
-    <!-- Header & Navigation -->
+    <!-- Header & Navigation                                          -->
     <!-- ───────────────────────────────────────────────────────────── -->
-    <header>
-      <div class="container">
+    <header class="site-header">
+      <div class="container site-header__container">
         <!-- Logo -->
-        <a href="#" class="logo" aria-label="Kasper home">
+        <a href="#" class="logo site-header__logo" aria-label="Kasper home">
           <img
             src="images/kaspar-logo.png"
             alt="Kasper logo"
@@ -143,7 +143,7 @@
         <!-- Navigation Menu -->
         <nav aria-label="Main navigation">
           <!-- Mobile Menu Toggle Button -->
-          <button class="toggle-menu" aria-label="Menu" aria-expanded="false">
+          <button class="toggle-menu site-header__toggle" aria-label="Menu" aria-expanded="false">
             <svg
               class="icon-svg"
               viewBox="0 0 24 24"
@@ -159,7 +159,8 @@
           <!-- Navigation Links -->
           <ul id="main-nav-list">
             <li>
-              <button class="close-nav-btn" aria-label="Close menu">✕</button>
+              <!-- BEM: nav__close -->
+              <button class="close-nav-btn nav__close" aria-label="Close menu">✕</button>
             </li>
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#services">Services</a></li>
@@ -170,7 +171,8 @@
           </ul>
 
           <!-- Search Form -->
-          <div class="form">
+          <!-- NOTE: .form renamed to site-header__search to avoid collision with <form> elements -->
+          <div class="site-header__search">
             <svg
               class="icon-svg"
               viewBox="0 0 24 24"
@@ -193,14 +195,15 @@
     <!-- Main Content -->
     <!-- ───────────────────────────────────────────────────────────── -->
     <main id="main-content">
+
       <!-- ──────────────────────────────────────────────────────────── -->
-      <!-- Landing / Hero Section (Carousel with Navigation) -->
+      <!-- Landing / Hero Section                                       -->
       <!-- ───────────────────────────────────────────────────────────── -->
-      <div class="landing" id="home">
-        <div class="overlay"></div>
+      <div class="landing hero" id="home">
+        <div class="overlay hero__overlay"></div>
 
         <!-- Hero Text Content -->
-        <div class="text">
+        <div class="text hero__text">
           <div class="content">
             <h2>Hello World!<br />We Are Kasper We Make Art.</h2>
             <p>
@@ -214,7 +217,7 @@
 
         <!-- Carousel Navigation Buttons -->
         <button
-          class="change-background fa-angle-left"
+          class="change-background fa-angle-left hero__arrow hero__arrow--prev"
           aria-label="Previous slide"
         >
           <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
@@ -223,7 +226,7 @@
         </button>
 
         <button
-          class="change-background fa-angle-right"
+          class="change-background fa-angle-right hero__arrow hero__arrow--next"
           aria-label="Next slide"
         >
           <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
@@ -232,20 +235,20 @@
         </button>
 
         <!-- Carousel Indicator Bullets -->
-        <ul class="bullets" role="tablist">
-          <li role="tab" aria-label="Slide 1"></li>
-          <li class="active" role="tab" aria-label="Slide 2"></li>
-          <li role="tab" aria-label="Slide 3"></li>
+        <ul class="bullets hero__bullets" role="tablist">
+          <li class="hero__bullet" role="tab" aria-label="Slide 1"></li>
+          <li class="active hero__bullet hero__bullet--active" role="tab" aria-label="Slide 2"></li>
+          <li class="hero__bullet" role="tab" aria-label="Slide 3"></li>
         </ul>
       </div>
 
       <!-- ──────────────────────────────────────────────────────────── -->
-      <!-- Services Section -->
+      <!-- Services Section                                             -->
       <!-- ───────────────────────────────────────────────────────────── -->
       <section id="services" class="services">
         <div class="container">
           <!-- Section Heading -->
-          <div class="main-heading">
+          <div class="main-heading section-heading">
             <h2>Services</h2>
             <p>
               Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
@@ -253,9 +256,9 @@
           </div>
 
           <!-- Service Boxes -->
-          <div class="content-services">
+          <div class="content-services services__grid">
             <!-- Service 1: Display / Video -->
-            <div class="srv-box">
+            <div class="srv-box services__item">
               <svg
                 viewBox="0 0 24 24"
                 width="50"
@@ -266,7 +269,7 @@
                   d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"
                 />
               </svg>
-              <div class="text">
+              <div class="text services__item-text">
                 <h3>Vorem amet intuitive</h3>
                 <p>
                   Curabitur arcu erat, accumsan id imperdiet et, porttitor at
@@ -276,7 +279,7 @@
             </div>
 
             <!-- Service 2: Settings / Configuration -->
-            <div class="srv-box">
+            <div class="srv-box services__item">
               <svg
                 viewBox="0 0 24 24"
                 width="50"
@@ -287,14 +290,14 @@
                   d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.33-.02-.64-.06-.94l2.02-1.58c.18-.14.23-.38.12-.56l-1.89-3.28c-.12-.19-.36-.26-.56-.18l-2.38.96c-.5-.38-1.06-.68-1.66-.88L14.45 3.5c-.04-.2-.2-.34-.4-.34h-3.78c-.2 0-.36.14-.4.34l-.3 2.52c-.6.2-1.16.5-1.66.88l-2.38-.96c-.2-.08-.44-.01-.56.18l-1.89 3.28c-.12.19-.07.42.12.56l2.02 1.58c-.04.3-.06.61-.06.94 0 .33.02.64.06.94l-2.02 1.58c-.18.14-.23.38-.12.56l1.89 3.28c.12.19.36.26.56.18l2.38-.96c.5.38 1.06.68 1.66.88l.3 2.52c.04.2.2.34.4.34h3.78c.2 0 .36-.14.4-.34l.3-2.52c.6-.2 1.16-.5 1.66-.88l2.38.96c.2.08.44.01.56-.18l1.89-3.28c.12-.19.07-.42-.12-.56l-2.02-1.58zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"
                 />
               </svg>
-              <div class="text">
+              <div class="text services__item-text">
                 <h3>Vorem amet intuitive</h3>
                 <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
               </div>
             </div>
 
             <!-- Service 3: Design / Edit -->
-            <div class="srv-box">
+            <div class="srv-box services__item">
               <svg
                 viewBox="0 0 24 24"
                 width="50"
@@ -305,14 +308,14 @@
                   d="M16.84 2.75c.39-.39 1.02-.39 1.41 0l2.5 2.5c.39.39.39 1.02 0 1.41L8.94 18.47c-.36.36-.85.58-1.38.58H4.5c-.28 0-.5-.22-.5-.5v-3.06c0-.53.21-1.03.59-1.4L16.84 2.75zM18 4.5L19.5 6 18 7.5 16.5 6 18 4.5zM5 16.5L7 18.5 5.5 20H4v-1.5L5 16.5z"
                 />
               </svg>
-              <div class="text">
+              <div class="text services__item-text">
                 <h3>Vorem amet intuitive</h3>
                 <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
               </div>
             </div>
 
             <!-- Service 4: Photography -->
-            <div class="srv-box">
+            <div class="srv-box services__item">
               <svg
                 viewBox="0 0 24 24"
                 width="50"
@@ -323,7 +326,7 @@
                   d="M15 12c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm8-6h-4.59l-1.3-2.28C16.7 3.27 16.09 3 15.45 3H8.55c-.64 0-1.25.27-1.64.72L5.59 6H1c-.55 0-1 .45-1 1v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V7c0-.55-.45-1-1-1z"
                 />
               </svg>
-              <div class="text">
+              <div class="text services__item-text">
                 <h3>Vorem amet intuitive</h3>
                 <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
               </div>
@@ -355,12 +358,12 @@
       </div>
 
       <!-- ──────────────────────────────────────────────────────────── -->
-      <!-- Portfolio Section -->
+      <!-- Portfolio Section                                            -->
       <!-- ───────────────────────────────────────────────────────────── -->
       <section id="portfolio" class="portfolio">
         <div class="container">
           <!-- Section Heading -->
-          <div class="main-heading">
+          <div class="main-heading section-heading">
             <h2>Our Work</h2>
             <p>
               Take a look at some of our recent projects. We love turning ideas into
@@ -380,65 +383,65 @@
 
         <!-- Portfolio Items Grid -->
         <div class="content-portfolio">
-          <div class="box" data-category="app">
+          <div class="box portfolio__item" data-category="app">
             <img src="images/portfolio/colored-photo.jpg" alt="Creative artwork" loading="lazy" />
-            <div class="caption">
+            <div class="caption portfolio__caption">
               <h4>Creative Concept</h4>
               <p>App Design</p>
             </div>
           </div>
 
-          <div class="box" data-category="photo">
+          <div class="box portfolio__item" data-category="photo">
             <img src="images/portfolio/fashion-illustrator.jpg" alt="Abstract design" loading="lazy" />
-            <div class="caption">
+            <div class="caption portfolio__caption">
               <h4>Visual Story</h4>
               <p>Photography</p>
             </div>
           </div>
 
-          <div class="box" data-category="web">
+          <div class="box portfolio__item" data-category="web">
             <img src="images/portfolio/chair.jpg" alt="Modern layout" loading="lazy" />
-            <div class="caption">
+            <div class="caption portfolio__caption">
               <h4>Modern Interface</h4>
               <p>Web Design</p>
             </div>
           </div>
 
-          <div class="box" data-category="print">
+          <div class="box portfolio__item" data-category="print">
             <img src="images/portfolio/portfolio.jpg" alt="Branding shot" loading="lazy" />
-            <div class="caption">
+            <div class="caption portfolio__caption">
               <h4>Brand Identity</h4>
               <p>Print Design</p>
             </div>
           </div>
 
-          <div class="box" data-category="photo">
+          <div class="box portfolio__item" data-category="photo">
             <img src="images/portfolio/group-photo.jpg" alt="Editorial photography" loading="lazy" />
-            <div class="caption">
+            <div class="caption portfolio__caption">
               <h4>Team Moments</h4>
               <p>Photography</p>
             </div>
           </div>
 
-          <div class="box" data-category="web">
+          <div class="box portfolio__item" data-category="web">
             <img src="images/portfolio/fashion.jpg" alt="Fashion concept" loading="lazy" />
-            <div class="caption">
+            <div class="caption portfolio__caption">
               <h4>Fashion Concept</h4>
               <p>Creative Shoot</p>
             </div>
           </div>
 
-          <div class="box" data-category="print">
+          <div class="box portfolio__item" data-category="print">
             <img src="images/portfolio/oip.jpg" alt="Digital art" loading="lazy" />
-            <div class="caption">
+            <div class="caption portfolio__caption">
               <h4>Digital Art</h4>
               <p>Illustration</p>
             </div>
           </div>
 
-          <div class="box" data-category="web">
+          <div class="box portfolio__item" data-category="web">
             <img src="images/portfolio/teodora.webp" alt="Creative portfolio" loading="lazy" />
-            <div class="caption">
+            <div class="caption portfolio__caption">
               <h4>Unique Ideas</h4>
               <p>Design Project</p>
             </div>
@@ -467,7 +470,7 @@
       <!-- ───────────────────────────────────────────────────────────── -->
       <section id="About" class="about">
         <div class="container">
-          <div class="main-heading">
+          <div class="main-heading section-heading">
             <h2>About</h2>
             <p>
               Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
@@ -482,24 +485,24 @@
       </section>
 
       <!-- ──────────────────────────────────────────────────────────── -->
-      <!-- Statistics Section (Animated Counters) -->
+      <!-- Statistics Section                                           -->
       <!-- ───────────────────────────────────────────────────────────── -->
       <div class="stat">
         <div class="container">
-          <div class="box">
-            <div class="number" data-goal="1002">0</div>
+          <div class="box stat__item">
+            <div class="number stat__number" data-goal="1002">0</div>
             <p>Coffee Drinks</p>
           </div>
-          <div class="box">
-            <div class="number" data-goal="256">0</div>
+          <div class="box stat__item">
+            <div class="number stat__number" data-goal="256">0</div>
             <p>Completed Projects</p>
           </div>
-          <div class="box">
-            <div class="number" data-goal="743">0</div>
+          <div class="box stat__item">
+            <div class="number stat__number" data-goal="743">0</div>
             <p>Mail Sent</p>
           </div>
-          <div class="box">
-            <div class="number" data-goal="170">0</div>
+          <div class="box stat__item">
+            <div class="number stat__number" data-goal="170">0</div>
             <p>Awards Received</p>
           </div>
         </div>
@@ -575,17 +578,17 @@
       </div>
 
       <!-- ──────────────────────────────────────────────────────────── -->
-      <!-- Pricing Section -->
+      <!-- Pricing Section                                              -->
       <!-- ───────────────────────────────────────────────────────────── -->
       <section id="price" class="pricing">
         <div class="container">
-          <div class="main-heading">
+          <div class="main-heading section-heading">
             <h2>Pricing</h2>
             <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
           </div>
           <div class="plans">
-            <div class="plan">
-              <div class="head">
+            <div class="plan pricing__plan">
+              <div class="head pricing__plan-head">
                 <h3>Basic</h3>
                 <span class="rich" data-goal="19">0</span>
               </div>
@@ -593,10 +596,10 @@
                 <li>Feature No 1</li>
                 <li>Extra Feature</li>
               </ul>
-              <div class="foot"><a href="#">Buy Now</a></div>
+              <div class="foot pricing__plan-foot"><a href="#">Buy Now</a></div>
             </div>
-            <div class="plan">
-              <div class="head">
+            <div class="plan pricing__plan">
+              <div class="head pricing__plan-head">
                 <h3>Premium</h3>
                 <span class="rich" data-goal="29">0</span>
               </div>
@@ -604,10 +607,10 @@
                 <li>Feature No 1</li>
                 <li>Extra Feature</li>
               </ul>
-              <div class="foot"><a href="#">Buy Now</a></div>
+              <div class="foot pricing__plan-foot"><a href="#">Buy Now</a></div>
             </div>
-            <div class="plan">
-              <div class="head">
+            <div class="plan pricing__plan">
+              <div class="head pricing__plan-head">
                 <h3>Pro</h3>
                 <span class="rich" data-goal="39">0</span>
               </div>
@@ -615,10 +618,10 @@
                 <li>Feature No 1</li>
                 <li>Extra Feature</li>
               </ul>
-              <div class="foot"><a href="#">Buy Now</a></div>
+              <div class="foot pricing__plan-foot"><a href="#">Buy Now</a></div>
             </div>
-            <div class="plan">
-              <div class="head">
+            <div class="plan pricing__plan">
+              <div class="head pricing__plan-head">
                 <h3>Platinum</h3>
                 <span class="rich" data-goal="49">0</span>
               </div>
@@ -626,7 +629,7 @@
                 <li>Feature No 1</li>
                 <li>Extra Feature</li>
               </ul>
-              <div class="foot"><a href="#">Buy Now</a></div>
+              <div class="foot pricing__plan-foot"><a href="#">Buy Now</a></div>
             </div>
           </div>
         </div>
@@ -648,20 +651,21 @@
       </div>
 
       <!-- ──────────────────────────────────────────────────────────── -->
-      <!-- Contact Section -->
+      <!-- Contact Section                                              -->
+      <!-- BEM:  form__input (element) added to input/textarea          -->
       <!-- ───────────────────────────────────────────────────────────── -->
       <section id="contact" class="contact">
         <div class="container">
-          <div class="main-heading">
+          <div class="main-heading section-heading">
             <h2>Contact Us</h2>
             <p>Curabitur arcu erat, accumsan id imperdiet et.</p>
           </div>
           <div class="content">
             <form>
-              <input class="main-input" type="text" placeholder="Your Name" />
-              <input class="main-input" type="email" placeholder="Your Email" />
+              <input class="main-input form__input" type="text" placeholder="Your Name" />
+              <input class="main-input form__input" type="email" placeholder="Your Email" />
               <textarea
-                class="main-input"
+                class="main-input form__input"
                 placeholder="Your Message"
               ></textarea>
               <input type="submit" value="Send Message" />
@@ -715,8 +719,9 @@
 
     <!-- ──────────────────────────────────────────────────────────── -->
     <!-- Scroll to Top Button -->
+    <!-- BEM:  scroll-top (block) — added alongside existing class     -->
     <!-- ───────────────────────────────────────────────────────────── -->
-    <button class="scroll-top-btn" aria-label="Scroll to top">↑</button>
+    <button class="scroll-top-btn scroll-top" aria-label="Scroll to top">↑</button>
 
     <!-- ──────────────────────────────────────────────────────────── -->
     <!-- JavaScript (Main Script) -->
