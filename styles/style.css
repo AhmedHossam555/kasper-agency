@@ -419,7 +419,6 @@ header .form svg {
   display: flex;
   align-items: center;
   overflow: hidden;
-
 }
 .design::before {
   content: "";
@@ -502,7 +501,7 @@ header .form svg {
 .shuffle li.active {
   background: var(--main-color);
   color: #fff;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .shuffle li::before {
@@ -594,11 +593,11 @@ header .form svg {
 }
 
 .video button {
-    padding: 1rem;
-    background: var(--main-color);
-    border: none;
-    outline: none;
-    color: white;
+  padding: 1rem;
+  background: var(--main-color);
+  border: none;
+  outline: none;
+  color: white;
 }
 .about {
   padding-top: var(--section-padding);
@@ -891,7 +890,9 @@ footer .container {
   visibility: hidden;
   transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
   z-index: 1000;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 28px;
   font-weight: bold;
   backdrop-filter: blur(2px);
@@ -902,7 +903,9 @@ footer .container {
 .scroll-top-btn.visible {
   opacity: 1;
   visibility: visible;
-  animation: gentle-pop 0.5s ease-out forwards;
+  animation:
+    gentle-pop 0.5s ease-out forwards ,
+    soft-pulse 2.5s ease-in-out 0.5s ;
 }
 
 /* Hover effect */
@@ -941,17 +944,25 @@ footer .container {
 
 /* Optional: smooth pulse when first appears */
 .scroll-top-btn.visible {
-  animation: gentle-pop 0.5s ease-out forwards, soft-pulse 2s ease-in-out 0.5s;
+  animation:
+    gentle-pop 0.5s ease-out forwards ,
+    soft-pulse 2s ease-in-out 0.5s infinite;
 }
 
 @keyframes soft-pulse {
   0% {
+    transform: scale(1);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   }
+
   50% {
-    box-shadow: 0 0 0 8px rgba(25, 200, 250, 0.3), 0 6px 18px rgba(0, 0, 0, 0.2);
+    transform: scale(1.08);
+    box-shadow: 0 0 0 12px rgba(25, 200, 250, 0.18),
+                0 6px 18px rgba(0, 0, 0, 0.2);
   }
+
   100% {
+    transform: scale(1);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   }
 }
