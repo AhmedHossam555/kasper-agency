@@ -1,10 +1,15 @@
 (function () {
-  // ─── MOBILE NAVIGATION & SCROLL TO TOP ──────────────────────────────────────
+  "use strict";
+
+  // ─── GLOBAL STATE ─────────────────────────────────────────────
+  const body = document.body;
+  let clickedLink = false;
+
+  // ─── MOBILE NAVIGATION & SCROLL TO TOP ───────────────────────
   const toggleBtn = document.querySelector(".toggle-menu");
   const navUl = document.querySelector("#main-nav-list");
   const closeBtn = document.querySelector(".close-nav-btn");
   const navLinks = document.querySelectorAll("#main-nav-list a");
-  const body = document.body;
 
   function openMenu() {
     if (!navUl) return;
@@ -20,36 +25,28 @@
     body.classList.remove("nav-open");
   }
 
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (navUl?.classList.contains("open")) closeMenu();
-      else openMenu();
-    });
-  }
-
-  if (closeBtn) closeBtn.addEventListener("click", closeMenu);
-  navLinks.forEach((link) => link.addEventListener("click", closeMenu));
-
-  navUl?.addEventListener("click", (e) => {
-    if (e.target === navUl) closeMenu();
+  toggleBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    navUl?.classList.contains("open") ? closeMenu() : openMenu();
   });
 
+  closeBtn?.addEventListener("click", closeMenu);
+  navLinks.forEach((link) => link.addEventListener("click", closeMenu));
+
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && navUl?.classList.contains("open")) closeMenu();
+    if (e.key === "Escape") closeMenu();
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth >= 768 && navUl?.classList.contains("open"))
-      closeMenu();
+    if (window.innerWidth >= 768) closeMenu();
   });
 
+  // ─── SCROLL TO TOP BUTTON ────────────────────────────────────
   const scrollBtn = document.querySelector(".scroll-top-btn");
 
   if (scrollBtn) {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 400) scrollBtn.classList.add("visible");
-      else scrollBtn.classList.remove("visible");
+      scrollBtn.classList.toggle("visible", window.scrollY > 400);
     });
 
     scrollBtn.addEventListener("click", () => {
@@ -57,10 +54,10 @@
     });
   }
 
-  // ─── ACTIVE LINK & SMOOTH SCROLL ────────────────────────────────────────────
+  // ─── ACTIVE LINK + SMOOTH SCROLL ─────────────────────────────
   function setActiveLink(activeLink) {
-    navLinks.forEach((link) => link.classList.remove("active"));
-    activeLink.classList.add("active");
+    navLinks.forEach((l) => l.classList.remove("active"));
+    activeLink?.classList.add("active");
   }
 
   navLinks.forEach((link) => {
@@ -69,129 +66,84 @@
 
       if (hash && hash.startsWith("#")) {
         e.preventDefault();
-        const targetElement = document.querySelector(hash);
 
-        if (targetElement) {
-          setActiveLink(this);
-          targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-          history.pushState(null, null, hash);
-        }
-      } else {
+        const target = document.querySelector(hash);
+        if (!target) return;
+
+        clickedLink = true;
+
         setActiveLink(this);
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+        history.pushState(null, null, hash);
+
+        setTimeout(() => {
+          clickedLink = false;
+        }, 800);
       }
     });
   });
 
-  // ─── IMAGE SLIDER ───────────────────────────────────────────────────────────
+  // ─── IMAGE SLIDER ────────────────────────────────────────────
   class ImageSlider {
     constructor(options) {
-      this.autoplayInterval = options.autoplayInterval || 5000;
-      this.landing = document.querySelector(options.container || ".landing");
-      this.nextBtn = document.querySelector(options.nextBtn || ".fa-angle-right");
-      this.prevBtn = document.querySelector(options.prevBtn || ".fa-angle-left");
-      this.bullets = document.querySelectorAll(options.bullets || ".bullets li");
-      this.images = options.images || [];
-      this.currentIndex = 0;
-      this.isTransitioning = false;
-      this.autoplayTimer = null;
+      this.landing = document.querySelector(options.container);
+      this.nextBtn = document.querySelector(options.nextBtn);
+      this.prevBtn = document.querySelector(options.prevBtn);
+      this.bullets = document.querySelectorAll(options.bullets);
+      this.images = options.images;
+      this.index = 0;
+      this.timer = null;
 
-      if (!this.landing || this.images.length === 0) return;
+      if (!this.landing || !this.images.length) return;
 
-      this.preloadImages();
-      this.attachEvents();
-      this.setBackground(0);
-      this.startAutoplay();
       this.init();
     }
 
     init() {
-      const firstImage = new Image();
-      firstImage.src = this.images[0];
+      this.setBg(0);
+      this.start();
 
-      firstImage.onload = () => {
-        this.landing.style.backgroundImage = `url(${this.images[0]})`;
-        this.updateBullets();
-        this.preloadImages();
-        this.attachEvents();
-        this.startAutoplay();
-      };
-    }
+      this.nextBtn?.addEventListener("click", () => this.next());
+      this.prevBtn?.addEventListener("click", () => this.prev());
 
-    preloadImages() {
-      this.images.forEach((src) => {
-        const img = new Image();
-        img.src = src;
-      });
-    }
-
-    setBackground(index) {
-      if (this.isTransitioning || index === this.currentIndex) return;
-
-      this.isTransitioning = true;
-      this.currentIndex = index;
-
-      this.landing.style.opacity = "0.7";
-
-      setTimeout(() => {
-        this.landing.style.backgroundImage = `url(${this.images[index]})`;
-        this.landing.style.opacity = "1";
-        this.updateBullets();
-        this.isTransitioning = false;
-      }, 300);
-
-      this.restartAutoplay();
-    }
-
-    updateBullets() {
-      this.bullets.forEach((b, i) => {
-        b.classList.toggle("active", i === this.currentIndex);
-        b.setAttribute("aria-current", i === this.currentIndex ? "true" : "false");
-      });
-    }
-
-    nextSlide = () => {
-      this.setBackground((this.currentIndex + 1) % this.images.length);
-    };
-
-    prevSlide = () => {
-      this.setBackground(
-        (this.currentIndex - 1 + this.images.length) % this.images.length
+      this.bullets.forEach((b, i) =>
+        b.addEventListener("click", () => this.setBg(i))
       );
-    };
-
-    goToSlide = (idx) => {
-      if (idx >= 0 && idx < this.images.length) this.setBackground(idx);
-    };
-
-    startAutoplay() {
-      this.autoplayTimer = setInterval(this.nextSlide, this.autoplayInterval);
     }
 
-    restartAutoplay() {
-      clearInterval(this.autoplayTimer);
-      this.startAutoplay();
-    }
+    setBg(i) {
+      this.index = i;
+      this.landing.style.backgroundImage = `url(${this.images[i]})`;
 
-    attachEvents() {
-      this.nextBtn?.addEventListener("click", this.nextSlide);
-      this.prevBtn?.addEventListener("click", this.prevSlide);
-
-      this.bullets.forEach((bullet, idx) =>
-        bullet.addEventListener("click", () => this.goToSlide(idx))
+      this.bullets.forEach((b, idx) =>
+        b.classList.toggle("active", idx === i)
       );
 
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") this.nextSlide();
-        if (e.key === "ArrowLeft") this.prevSlide();
-      });
+      this.reset();
+    }
 
-      this.landing?.addEventListener("mouseenter", () =>
-        clearInterval(this.autoplayTimer)
-      );
+    next() {
+      this.setBg((this.index + 1) % this.images.length);
+    }
 
-      this.landing?.addEventListener("mouseleave", () =>
-        this.startAutoplay()
+    prev() {
+      this.setBg(
+        (this.index - 1 + this.images.length) % this.images.length
       );
+    }
+
+    start() {
+      this.timer = setInterval(() => this.next(), 4000);
+    }
+
+    reset() {
+      clearInterval(this.timer);
+      this.start();
     }
   }
 
@@ -206,148 +158,101 @@
         "images/slider/frogs.jpg",
         "images/slider/whale.jpg",
       ],
-      autoplayInterval: 4000,
     });
   }
 
-  // ─── STATS & PRICING ANIMATION ──────────────────────────────────────────────
+  // ─── STATS ANIMATION ─────────────────────────────────────────
   const statSection = document.querySelector(".stat");
   const priceSection = document.querySelector(".pricing");
 
-  let countedStats = false,
-    countedPrices = false;
-
   function animateNumbers(elements) {
     elements.forEach((el) => {
-      const goal = parseInt(el.dataset.goal);
-      if (isNaN(goal)) return;
+      const goal = +el.dataset.goal;
+      let count = 0;
+      const step = Math.ceil(goal / 50);
 
-      let current = 0;
-      const increment = Math.ceil(goal / 55);
+      const interval = setInterval(() => {
+        count += step;
 
-      const timer = setInterval(() => {
-        current += increment;
-
-        if (current >= goal) {
+        if (count >= goal) {
           el.textContent = goal;
-          clearInterval(timer);
+          clearInterval(interval);
         } else {
-          el.textContent = current;
+          el.textContent = count;
         }
       }, 25);
     });
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (entry.target === statSection && !countedStats) {
-            countedStats = true;
-            animateNumbers(document.querySelectorAll(".stat .number"));
-          }
-
-          if (entry.target === priceSection && !countedPrices) {
-            countedPrices = true;
-            animateNumbers(document.querySelectorAll(".rich"));
-          }
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  if (statSection) observer.observe(statSection);
-  if (priceSection) observer.observe(priceSection);
-
-  // ─── SKILLS PROGRESS BARS ───────────────────────────────────────────────────
-  const skillSection = document.querySelector(".our-skills");
-  const progressSpans = document.querySelectorAll(".prog span");
-
-  let skillsAnimated = false;
-
-  const skillObserver = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting && !skillsAnimated) {
-        skillsAnimated = true;
-        progressSpans.forEach((span) => {
-          span.style.width = span.dataset.prog;
-        });
-      }
-    },
-    { threshold: 0.4 }
-  );
-
-  if (skillSection) skillObserver.observe(skillSection);
-
-  // ─── SCROLL SPY (ACTIVE LINK ON SCROLL) ─────────────────────────────────────
-  const sections = document.querySelectorAll("section[id], div[id]");
-
-  function updateActiveOnScroll() {
-    let scrollPos = window.scrollY + 150;
-    let activeId = null;
-
-    sections.forEach((section) => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute("id");
-
-      if (scrollPos >= top && scrollPos < top + height && id) {
-        activeId = id;
-      }
-    });
-
-    if (activeId) {
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${activeId}`) {
-          link.classList.add("active");
-        }
-      });
-    }
-  }
-
-  window.addEventListener("scroll", updateActiveOnScroll);
-  updateActiveOnScroll();
-})();
-
-// ─── DESIGN SECTION ANIMATION ─────────────────────────────────────────────────
-const designSection = document.querySelector(".design");
-
-const observer = new IntersectionObserver(
-  (entries) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        designSection.classList.add("show");
+        if (entry.target === statSection) {
+          animateNumbers(document.querySelectorAll(".stat .number"));
+        }
+
+        if (entry.target === priceSection) {
+          animateNumbers(document.querySelectorAll(".rich"));
+        }
       }
     });
-  },
-  { threshold: 0.3 }
-);
+  }, { threshold: 0.3 });
 
-observer.observe(designSection);
+  statSection && observer.observe(statSection);
+  priceSection && observer.observe(priceSection);
 
+  // ─── SKILLS BAR ───────────────────────────────────────────────
+  const skillSection = document.querySelector(".our-skills");
+  const bars = document.querySelectorAll(".prog span");
 
-// ─── PORTFOLIO FILTER ─────────────────────────────────────────────
-const filterButtons = document.querySelectorAll(".shuffle li");
-const boxes = document.querySelectorAll(".content-portfolio .box");
+  const skillObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      bars.forEach((b) => (b.style.width = b.dataset.prog));
+    }
+  }, { threshold: 0.4 });
 
-filterButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    // remove active
-    filterButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
+  skillSection && skillObserver.observe(skillSection);
 
-    const filter = btn.dataset.filter;
+})();
 
-    boxes.forEach((box) => {
-      const category = box.dataset.category;
+// ─── DESIGN ANIMATION ──────────────────────────────────────────
+window.addEventListener("DOMContentLoaded", () => {
+  const designSection = document.querySelector(".design");
 
-      if (filter === "all" || category === filter) {
-        box.style.display = "block";
-      } else {
-        box.style.display = "none";
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        designSection?.classList.add("show");
       }
+    });
+  }, { threshold: 0.3 });
+
+  designSection && observer.observe(designSection);
+});
+
+// ─── PORTFOLIO FILTER (FIXED) ──────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  const filterButtons = document.querySelectorAll(".shuffle li");
+  const boxes = document.querySelectorAll(".content-portfolio .box");
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      console.log("filter clicked:", btn.dataset.filter);
+
+      filterButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter;
+
+      boxes.forEach((box) => {
+        const cat = box.dataset.category;
+
+        if (filter === "all" || cat === filter) {
+          box.classList.remove("hide");
+        } else {
+          box.classList.add("hide");
+        }
+      });
     });
   });
 });
